@@ -367,17 +367,18 @@ int work_it(CompileJob &j, unsigned int job_stat[], MsgChannel *client, CompileR
             log_perror("close failed");
         }
 
-#ifdef ICECC_DEBUG
+//#ifdef ICECC_DEBUG
 
         for (int f = STDERR_FILENO + 1; f < 4096; ++f) {
             long flags = fcntl(f, F_GETFD, 0);
             assert(flags < 0 || (flags & FD_CLOEXEC));
         }
 
-#endif
+//#endif
 
         execv(argv[0], const_cast<char * const*>(argv));    // no return
         log_perror("ICECC: execv failed for file ") << argv[0] << endl;
+        log_error() << "ICECC error: execv failed for file " << argv[0] << endl;
         perror("ICECC: execv");
 
         char resultByte = 1;
