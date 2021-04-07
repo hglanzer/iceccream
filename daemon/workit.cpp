@@ -377,6 +377,7 @@ int work_it(CompileJob &j, unsigned int job_stat[], MsgChannel *client, CompileR
 #endif
 
         execv(argv[0], const_cast<char * const*>(argv));    // no return
+        log_perror("ICECC: execv failed for file ") << argv[0] << endl;
         perror("ICECC: execv");
 
         char resultByte = 1;

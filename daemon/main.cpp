@@ -2519,6 +2519,7 @@ int main(int argc, char **argv)
     }
 
     setup_debug(debug_level, logfile);
+    log_perror("ICECC: PERROR TEST ENTRY ") << endl;
 
     log_info() << "ICECREAM daemon " VERSION " starting up (nice level "
                << nice_level << ") " << endl;
