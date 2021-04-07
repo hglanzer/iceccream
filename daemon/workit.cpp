@@ -377,11 +377,13 @@ int work_it(CompileJob &j, unsigned int job_stat[], MsgChannel *client, CompileR
 //#endif
 
         execv(argv[0], const_cast<char * const*>(argv));    // no return
+	int err_saved = errno;
         log_perror("ICECC: execv failed for file ") << argv[0] << endl;
         log_error() << "ICECC error: execv failed for file " << argv[0] << endl;
         perror("ICECC: execv");
 
-        char resultByte = 1;
+        char resultByte = (char)err_saved;
+        //char resultByte = 1;
         ignore_result(write(main_sock[1], &resultByte, 1));
         _exit(-1);
     }
