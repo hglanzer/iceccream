@@ -417,8 +417,9 @@ int work_it(CompileJob &j, unsigned int job_stat[], MsgChannel *client, CompileR
         if (n == 1) {
             rmsg.status = resultByte;
 
-            log_error() << "compiler did not start" << endl;
+            log_error() << "compiler did not start: " << rmsg.status << " = " << strerror(rmsg.status) << endl;
             error_client(client, "compiler did not start");
+            error_client(client, strerror(rmsg.status));
             return EXIT_COMPILER_MISSING;
         }
 
