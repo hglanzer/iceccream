@@ -314,7 +314,7 @@ int work_it(CompileJob &j, unsigned int job_stat[], MsgChannel *client, CompileR
             argstxt += ' ';
             argstxt += argv[pos];
         }
-        trace() << "final arguments:" << argstxt << endl;
+        trace() << "final call:" << argv[0] << " / args = " << argstxt << endl;
 
         close_debug();
 
